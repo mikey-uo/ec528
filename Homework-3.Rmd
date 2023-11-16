@@ -1,0 +1,82 @@
+---
+title: "Homework 3"
+author: "Pilar Mullican"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1. Time Preferences
+
+**In class, we solved a two-period savings model where a consumer allocates income across two periods. We assumed the consumer's inter-temporal utility function was given by:** $U(c_1, c_2) = log(c_1)+\delta log(c_2)$ **and that their inter-temporal budget constraint was** $M_1+\frac{M_2}{1+r} = c_1+\frac{c_2}{1+r}$
+
+**Along the way to solving that problem, we found that consumers should select their consumption in each period so that:** $$u'(c_1)=\delta (1+r)u'(c_2)$$ **where** $\delta$ **is the exponential discount rate and** $r$ **is the interest rate.**
+
+**In this problem, we will extend this problem from two to three periods. We will solve it with exponential discounting and quasi-hyperbolic discounting.**
+
+### 1.1. Assume the consumer's "flow" utility is given by $log(c_t)$ in each period and that the consumer has an exponential discount rate $\delta$. What is the inter-temporal utility function with three periods (instead of two)?
+
+We know that the inter-temporal utility function is give by; $$U(c_t)=\sum_{t=0}^{T} \delta^{t-1}u(c_t)$$ So for a consumer with a "flow" utility given by $log(c_t)$, the inter-temporal utility function for three periods would be; $$U(c_t)=\sum_{t=0}^{3} \delta^{t-1}log(c_t)$$
+
+which equals to; $$U(c_1, c_2, c_3) = log(c_1)+\delta log(c_2)+\delta^2 log(c_3)$$
+
+### 1.2. Assume the consumer receives income M1 in period 1, M2 in period 2, and M3 in period 3 and that the interest rate is still r. What is the inter-temporal budget constraint with three periods (instead of two)?
+
+$$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1 + \frac{c_2}{1+r} + \frac{c_3}{(1+r)^2}$$
+
+### 1.3. We normally solve utility maximization problems where the consumer only chooses two things. We use two equations to solve for these two unknowns: (1) the marginal rate of substitution equals the price ratio and (2) the budget constraint. When solving for more than two things, we can replace the MRS=price ratio equation with the requirement that the marginal utility per dollar for each good must be the same. If it is helpful, you can write for each good, g, $MU_g/p_g = \Lambda$ where $\Lambda$ is sometimes called the "Lagrange Multiplier." With only two goods, this gives you exactly the same information as MRS=price ratio, but with three goods it gives you more equations. Use this to extend the condition that $u'(c_1)=\delta (1+r)u'(c_2)$ to include utility in the third period.
+
+Using Lagrange Multiplies we have that for;
+
+$$\frac{MUc_1}{p_{c_1}}=\Lambda => \frac{u'(c_1)}{1}=\Lambda$$ $$\frac{MUc_2}{p_{c_2}}=\Lambda => \frac{\delta u'(c_2)}{\frac{1}{1+r}}=\Lambda$$
+
+$$\frac{MUc_3}{p_{c_3}}=\Lambda => \frac{\delta^2 u'(c_3)}{\frac{1}{(1+r)^2}}=\Lambda$$ now since each equation equals $\Lambda$ we can set all of the equations equal to each other which giives us;
+
+$$\frac{u'(c_1)}{1}=\frac{\delta u'(c_2)}{\frac{1}{1+r}}=\frac{\delta^2 u'(c_3)}{\frac{1}{(1+r)^2}}$$ which we can rewrite as;
+
+$$u'(c_1)=\delta u'(c_2)(1+r)=\delta^2 u'(c_3)(1+r)^2$$
+
+### 1.4. Solve for consumption in each period assuming $u(c_t) = log(c_t)$ in every period, $\delta = 0.95$, $r = 0.05$, and $M_1 = M_2 = M_3 = 100$.
+
+We will start by solving for consumption in the first period. lets start by using the condition;
+
+$$u'(c_1)=\delta u'(c_2)(1+r)=\delta^2 u'(c_3)(1+r)^2$$ such that,
+
+$$\frac{1}{c_1}=\delta \frac{1}{c_2}(1+r) => c_2=\delta c_1(1+r)$$ and,$$\frac{1}{c_1}=\delta^2 \frac{1}{c_3}(1+r)^2 => c_3=\delta^2 c_1(1+r)^2$$
+
+Now we can substitute $c_2$ and $c_3$ into the inter-temporal budget constraint we found in 1.2, and solve for $c_1$;
+
+$$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1 + \frac{c_2}{1+r} + \frac{c_3}{(1+r)^2}$$ $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1 + \frac{\delta c_1(1+r)}{1+r} + \frac{\delta^2 c_1(1+r)^2}{(1+r)^2}$$
+
+$$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1 + \delta c_1 + \delta^2 c_1$$ $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1(1+\delta+\delta^2)$$ $$c_1=\frac{1}{1+\delta+\delta^2}(M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2})$$ We can now sub $\delta = 0.95$, $r = 0.05$, and $M_1 = M_2 = M_3 = 100$; $$c_1=\frac{1}{1+.95+.95^2}(100 + \frac{100}{1+.05} + \frac{100}{(1+.05)^2})=>c_1=100.2423$$ Therefore, $c_1=100.242$.
+
+Now we can solve for $c_2$ by using the condition; $$\delta u'(c_2)(1+r)=\delta^2 u'(c_3)(1+r)^2$$ $$\delta \frac{1}{c_2}(1+r)=\delta^2 \frac{1}{c_3}(1+r)^2$$ $$ c_3=\delta c_2(1+r)$$ We can now sub $c_1=100.242$ and $c_3$ into the inter-temporal budget constraint to find $c_2$;
+
+$$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = 100.2423 + \frac{c_2}{1+r} + \frac{\delta c_2(1+r)}{(1+r)^2}$$ $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2}-100.2423 =\frac{c_2}{1+r}(1+\delta)$$ $$c_2=\frac{1+r}{1+\delta}(M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2}-100.2423)$$ Now subbing $\delta = 0.95$, $r = 0.05$, and $M_1 = M_2 = M_3 = 100$; $$c_2=\frac{1.05}{1.95}(100 + \frac{100}{1+.05} + \frac{100}{(1+.05)^2}-100.2423)=>c_2=99.9916$$ Therefore, $c_2=99.9916$. Now to find $c_3$ we will sub $c_1=100.242$ and $c_2=99.9916$; $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = 100.2423 + \frac{99.9916}{1.05} + \frac{c_3}{(1+r)^2}$$ $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = 195.4724 + \frac{c_3}{(1+r)^2}$$ $$c_3=(1+r)^2(M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} - 195.4724)$$ Now subbing $\delta = 0.95$, $r = 0.05$, and $M_1 = M_2 = M_3 = 100$; $$c_3=(1.05)^2(100 + \frac{100}{1+.05} + \frac{100}{(1+.05)^2} - 195.4724)=>c_3=99.74168$$ Therefor, $c_3=99.74168$.
+
+Thus, we have that $c_1=100.242$, $c_2=99.9916$, and $c_3=99.74168$.
+
+### 1.5. Now, assume the consumer has quasi-hyperbolic time preferences with additional parameter $\beta = 0.9$. Solve for consumption in each period assuming $u(c_t) = log(c_t)$ in every period, $\delta = 0.95$,\$ r = 0.05\$, and $M_1 = M_2 = M_3 = 100$.
+
+We know that the quasi-hyperbolic time preferences is given by; $$U(c_t)=\sum_{t=0}^{T} \beta\delta^{t-1}u(c_t)$$ Assuming $u(c_t) = log(c_t)$ and we are solving for a three period model we have that; $$U(c_t)=\sum_{t=0}^{3} \beta\delta^{t-1}log(c_t)$$ which equals to; $$U(c_1, c_2, c_3) = log(c_1)+\beta\delta log(c_2)+\beta\delta^2 log(c_3)$$ we also know that the inter-temporal budget constraint is; $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1 + \frac{c_2}{1+r} + \frac{c_3}{(1+r)^2}$$ And that consumption in each period must satisfy the condition; $$u'(c_1)=\beta\delta u'(c_2)(1+r)=\beta\delta^2 u'(c_3)(1+r)^2$$ We have all the information needed to solve for $c_1$, $c_2$, and $c_3$. \*\*\* We will start by solving for consumption in the first period. lets start by using the condition;
+
+$$u'(c_1)=\beta\delta u'(c_2)(1+r)=\beta\delta^2 u'(c_3)(1+r)^2$$ such that,
+
+$$\frac{1}{c_1}=\beta\delta \frac{1}{c_2}(1+r) => c_2=\beta\delta c_1(1+r)$$ and,$$\frac{1}{c_1}=\beta\delta^2 \frac{1}{c_3}(1+r)^2 => c_3=\beta\delta^2 c_1(1+r)^2$$
+
+Now we can substitute $c_2$ and $c_3$ into the inter-temporal budget constraint we found in 1.2, and solve for $c_1;$
+
+$$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1 + \frac{c_2}{1+r} + \frac{c_3}{(1+r)^2}$$ $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1 + \frac{\beta\delta c_1(1+r)}{1+r} + \frac{\beta\delta^2 c_1(1+r)^2}{(1+r)^2}$$
+
+$$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1 + \beta\delta c_1 + \beta\delta^2 c_1$$ $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = c_1(1+\beta\delta+\beta\delta^2)$$ $$c_1=\frac{1}{1+\beta\delta+\beta\delta^2}(M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2})$$ We can now sub $\beta = 0.9$, $\delta = 0.95$, $r = 0.05$, and $M_1 = M_2 = M_3 = 100$; $$c_1=\frac{1}{1+(.9).95+(.9).95^2}(100 + \frac{100}{1+.05} + \frac{100}{(1+.05)^2})=>c_1=107.2044$$ Therefore, $c_1=107.2044$.
+
+Now we can solve for $c_2$ by using the condition; $$\beta\delta u'(c_2)(1+r)=\beta\delta^2 u'(c_3)(1+r)^2$$ $$\beta\delta \frac{1}{c_2}(1+r)=\beta\delta^2 \frac{1}{c_3}(1+r)^2$$ $$ c_3=\delta c_2(1+r)$$ We can now sub $c_1=107.2044$ and $c_3$ into the inter-temporal budget constrain to find $c_2$;
+
+$$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = 107.2044 + \frac{c_2}{1+r} + \frac{\delta c_2(1+r)}{(1+r)^2}$$ $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2}-107.2044 =\frac{c_2}{1+r}(1+\delta)$$ $$c_2=\frac{1+r}{1+\delta}(M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2}-107.2044)$$ Now subbing $\delta = 0.95$, $r = 0.05$, and $M_1 = M_2 = M_3 = 100$; $$c_2=\frac{1.05}{1.95}(100 + \frac{100}{1+.05} + \frac{100}{(1+.05)^2}-107.2044)=>c_2=96.24278$$ Therefore, $c_2=96.24278$.
+
+Now to find $c_3$ we will sub $c_1=107.2044$ and $c_2=96.24278$; $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = 107.2044 + \frac{96.24278}{1.05} + \frac{c_3}{(1+r)^2}$$ $$M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} = 198.8642 + \frac{c_3}{(1+r)^2}$$ $$c_3=(1+r)^2(M_1 + \frac{M_2}{1+r} + \frac{M_3}{(1+r)^2} - 198.8642)$$ Now subbing $\delta = 0.95$, $r = 0.05$, and $M_1 = M_2 = M_3 = 100$; $$c_3=(1.05)^2(100 + \frac{100}{1+.05} + \frac{100}{(1+.05)^2} - 198.8642)=>c_3=96.00222$$ Therefore, $c_3=96.00222$.
+
+Thus, we have that $c_1=107.2044$, $c_2=96.24278$, and $c_3=96.00222$.
